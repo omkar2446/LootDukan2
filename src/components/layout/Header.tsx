@@ -25,7 +25,7 @@ export function Header({ onSearch }: HeaderProps) {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg gradient-primary">
-           <img src="favicon.ico" alt="" />
+           <img src="afavicon.ico" alt="" />
           </div>
           <span className="hidden font-display text-xl font-bold text-foreground sm:inline-block">
             LootDukan
