@@ -16,6 +16,7 @@ import { Plus, Pencil, Trash2, Package, DollarSign, TrendingUp, Loader2 } from '
 import { toast } from 'sonner';
 import { Helmet } from 'react-helmet-async';
 
+
 interface ProductForm {
   name: string;
   image_url: string;

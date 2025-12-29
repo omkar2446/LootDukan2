@@ -36,6 +36,9 @@ const App = () => (
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/admin-login" element={<Auth />} />
+<Route path="/admin/add-product" element={<Admin />} />
+
             </Routes>
           </BrowserRouter>
         </TooltipProvider>
