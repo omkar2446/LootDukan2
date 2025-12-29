@@ -79,14 +79,16 @@ export function ProductCard({ product }: ProductCardProps) {
         </h3>
 
         {/* Price */}
-        <div className="flex items-baseline gap-2">
-          <span className="text-xl font-bold text-foreground">
-            {formatPrice(product.discounted_price)}
-          </span>
-          <span className="text-sm text-muted-foreground line-through">
-            {formatPrice(product.original_price)}
-          </span>
-        </div>
+        <div className="flex flex-col gap-1">
+  <p className="text-lg font-bold text-foreground leading-tight">
+    ₹{Number(product.discounted_price).toLocaleString("en-IN")}
+  </p>
+
+  <p className="text-sm text-muted-foreground line-through leading-tight">
+    ₹{Number(product.original_price).toLocaleString("en-IN")}
+  </p>
+</div>
+
 
         {/* Savings */}
         <p className="text-xs text-success font-medium">
