@@ -91,9 +91,14 @@ export function ProductCard({ product }: ProductCardProps) {
 
 
         {/* Savings */}
-        <p className="text-xs text-success font-medium">
-          You save {formatPrice(product.original_price - product.discounted_price)}
-        </p>
+        {product.discount_percent > 0 && (
+    <p className="text-xs text-green-600 font-medium leading-tight">
+      You save ₹
+      {Number(
+        product.original_price - product.discounted_price
+      ).toLocaleString("en-IN")}
+    </p>
+  )}
 
         {/* Buy Button */}
         <Button 
