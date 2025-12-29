@@ -11,13 +11,10 @@ interface HeaderProps {
 }
 
 export function Header({ onSearch }: HeaderProps) {
-  const { user, isAdmin, signOut } = useAuth();
-  const [searchQuery, setSearchQuery] = useState('');
+   const { isAdmin } = useAuth();
+  const [searchQuery, setSearchQuery] = useState("");
   
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSearch?.(searchQuery);
-  };
+ 
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
@@ -33,18 +30,25 @@ export function Header({ onSearch }: HeaderProps) {
         </Link>
 
         {/* Search Bar - Desktop */}
-        <form onSubmit={handleSearch} className="hidden flex-1 max-w-md md:flex">
-          <div className="relative w-full">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+       <div className="flex-1 max-w-md">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <Input
               type="search"
-              placeholder="Search for products..."
+              placeholder="Search products..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 bg-muted/50 border-0 focus-visible:ring-2 focus-visible:ring-primary"
+              onChange={(e) => {
+                const value = e.target.value;
+                setSearchQuery(value);
+                onSearch?.(value); // 🔥 LIVE SEARCH
+              }}
+              className="pl-10"
             />
           </div>
-        </form>
+        </div>
+
+          </div>
+      
 
         {/* Navigation */}
         <nav className="flex items-center gap-2">
@@ -60,25 +64,31 @@ export function Header({ onSearch }: HeaderProps) {
 
           {/* Mobile Menu */}
           <Sheet>
-            <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon">
-                <Menu className="h-5 w-5" />
-              </Button>
-            </SheetTrigger>
+            <form
+ 
+  className="flex flex-1 max-w-full md:max-w-md"
+>
+  
+</form>
+
             <SheetContent side="right" className="w-72">
               <div className="flex flex-col gap-4 mt-8">
-                <form onSubmit={handleSearch}>
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                    <Input
-                      type="search"
-                      placeholder="Search..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full pl-10"
-                    />
-                  </div>
-                </form>
+                <form
+ 
+  className="flex flex-1 max-w-full md:max-w-md"
+>
+  <div className="relative w-full">
+    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+    <Input
+      type="search"
+      placeholder="Search products..."
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+      className="w-full pl-10 bg-muted/50 border-0 focus-visible:ring-2 focus-visible:ring-primary"
+    />
+  </div>
+</form>
+
                 
                 {isAdmin && (
                   <Link to="/admin">
@@ -93,7 +103,7 @@ export function Header({ onSearch }: HeaderProps) {
             </SheetContent>
           </Sheet>
         </nav>
-      </div>
+      
     </header>
   );
 }
