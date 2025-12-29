@@ -93,7 +93,7 @@ export function ProductCard({ product }: ProductCardProps) {
         {/* Savings */}
         {product.discount_percent > 0 && (
     <p className="text-xs text-green-600 font-medium leading-tight">
-      You save 
+      You save ₹
       {Number(
         product.original_price - product.discounted_price
       ).toLocaleString("en-IN")}
